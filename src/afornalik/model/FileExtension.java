@@ -8,10 +8,10 @@ public abstract class FileExtension implements Checkable {
 
     private final String FILE_EXTENSION;
     private final String EXPECTED_EXTENSION;
-    private File file;
+    private byte[] firstByteFromFile = new byte[15];
 
-    public FileExtension(File file, ExtensionList extensionList) {
-        this.file = file;
+    public FileExtension(byte[] firstBytesFromFile, ExtensionList extensionList) {
+        this.firstByteFromFile = firstBytesFromFile;
         FILE_EXTENSION = extensionList.name();
         EXPECTED_EXTENSION = extensionList.getSignature();
     }
@@ -24,11 +24,11 @@ public abstract class FileExtension implements Checkable {
         return EXPECTED_EXTENSION;
     }
 
-    public File getFile() {
-        return file;
+    public byte[] getFirstByteFromFile() {
+        return firstByteFromFile;
     }
 
-    public void setFile(File file) {
-        this.file = file;
+    public void setFirstByteFromFile(byte[] firstByteFromFile) {
+        this.firstByteFromFile = firstByteFromFile;
     }
 }
