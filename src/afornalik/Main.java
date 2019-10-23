@@ -1,14 +1,14 @@
 package afornalik;
 
-import afornalik.model.exception.ExtensionNotSupportedException;
-import afornalik.model.implementation.ExtensionList;
-import afornalik.model.FileExtension;
-import afornalik.model.implementation.FileExtensionImpl;
+import afornalik.utils.exception.ExtensionNotSupportedException;
+import afornalik.utils.implementation.ExtensionList;
+import afornalik.utils.FileExtension;
+import afornalik.utils.implementation.FileExtensionImpl;
+import afornalik.utils.implementation.TextFileExtensionImpl;
 import afornalik.service.FileService;
 import afornalik.service.IFileService;
 
 import java.io.*;
-import java.util.Scanner;
 
 public class Main {
 
@@ -20,21 +20,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //to do -  checking for .txt extension is not working.
-        //I can not find ISO 8859-1 representation for this file.
 
-        File file = new File(CURRENT_PATH+"\\samples\\"+SAMPLE_FILE);
+        File file = new File(CURRENT_PATH + "\\samples\\" + SAMPLE_FILE);
         IFileService fileService = new FileService(file);
 
         String inputFileExtension = fileService.returnInputFileExtension();
 
         byte[] firstBytesFromFile = fileService.returnFirstByteFromFile();
 
-        FileExtension jpegExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.JPG);
-        FileExtension gifExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.GIF);
-        FileExtension txtExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.TXT);
-        FileExtension bmpExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.BMP);
-        FileExtension pdfExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.PDF);
+        FileExtension jpegExtension = new FileExtensionImpl(firstBytesFromFile, inputFileExtension, ExtensionList.JPG);
+        FileExtension gifExtension = new FileExtensionImpl(firstBytesFromFile, inputFileExtension, ExtensionList.GIF);
+        FileExtension txtExtension = new TextFileExtensionImpl(firstBytesFromFile, inputFileExtension, ExtensionList.TXT);
+        FileExtension bmpExtension = new FileExtensionImpl(firstBytesFromFile, inputFileExtension, ExtensionList.BMP);
+        FileExtension pdfExtension = new FileExtensionImpl(firstBytesFromFile, inputFileExtension, ExtensionList.PDF);
 
         jpegExtension.setNextChain(gifExtension);
         gifExtension.setNextChain(txtExtension);

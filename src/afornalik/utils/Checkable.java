@@ -1,7 +1,7 @@
-package afornalik.model;
+package afornalik.utils;
 
 
-import afornalik.model.exception.ExtensionNotSupportedException;
+import afornalik.utils.exception.ExtensionNotSupportedException;
 
 public interface Checkable {
 

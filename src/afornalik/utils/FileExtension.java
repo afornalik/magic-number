@@ -1,6 +1,6 @@
-package afornalik.model;
+package afornalik.utils;
 
-import afornalik.model.implementation.ExtensionList;
+import afornalik.utils.implementation.ExtensionList;
 
 public abstract class FileExtension implements Checkable {
 
@@ -16,19 +16,19 @@ public abstract class FileExtension implements Checkable {
         EXPECTED_EXTENSION = extensionList.getSignature();
     }
 
-    public String getFILE_EXTENSION() {
+    protected String getFILE_EXTENSION() {
         return FILE_EXTENSION;
     }
 
-    public String[] getEXPECTED_EXTENSION() {
+    protected String[] getEXPECTED_EXTENSION() {
         return EXPECTED_EXTENSION;
     }
 
-    public byte[] getFirstByteFromFile() {
+    protected byte[] getFirstByteFromFile() {
         return firstByteFromFile;
     }
 
-    public String getInputFileExtension() {
+    protected String getInputFileExtension() {
         return inputFileExtension;
     }
 }

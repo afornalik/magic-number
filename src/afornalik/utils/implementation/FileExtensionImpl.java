@@ -1,22 +1,22 @@
-package afornalik.model.implementation;
+package afornalik.utils.implementation;
 
-import afornalik.model.FileExtension;
-import afornalik.model.exception.ExtensionNotSupportedException;
+import afornalik.utils.FileExtension;
+import afornalik.utils.exception.ExtensionNotSupportedException;
 
 
 public class FileExtensionImpl extends FileExtension {
 
     private FileExtension nextChain;
 
-    public FileExtensionImpl(byte[] firstBytesFromFile , String inputFileExtension, ExtensionList extensionList) {
-        super(firstBytesFromFile,inputFileExtension, extensionList);
+    public FileExtensionImpl(byte[] firstBytesFromFile, String inputFileExtension, ExtensionList extensionList) {
+        super(firstBytesFromFile, inputFileExtension, extensionList);
     }
 
     @Override
     public void checkTheExtension() throws ExtensionNotSupportedException {
         String firstStringFromFile = firstStringFromFile();
         boolean flag = false;
-        for(String extension : super.getEXPECTED_EXTENSION()) {
+        for (String extension : super.getEXPECTED_EXTENSION()) {
             if (firstStringFromFile.contains(extension)) {
                 System.out.print("File type is : " + super.getFILE_EXTENSION());
                 if (getInputFileExtension().toUpperCase().equals(super.getFILE_EXTENSION())) {
@@ -30,13 +30,12 @@ public class FileExtensionImpl extends FileExtension {
                 if (this.nextChain == null) {
                     throw new ExtensionNotSupportedException(" Extension not supported ");
                 }
-                flag =true;
+                flag = true;
             }
         }
-        if(flag){
+        if (flag) {
             this.nextChain.checkTheExtension();
         }
-
     }
 
     private String firstStringFromFile() {

@@ -1,4 +1,4 @@
-package afornalik.model.exception;
+package afornalik.utils.exception;
 
 public class ExtensionNotSupportedException extends Exception {
     private String message;
