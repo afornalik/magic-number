@@ -18,6 +18,7 @@ public class FileService implements IFileService{
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             fileInputStream.read(firstByteFromFile);
+            fileInputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

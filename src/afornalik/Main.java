@@ -1,5 +1,6 @@
 package afornalik;
 
+import afornalik.model.exception.ExtensionNotSupportedException;
 import afornalik.model.implementation.ExtensionList;
 import afornalik.model.FileExtension;
 import afornalik.model.implementation.FileExtensionImpl;
@@ -15,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        File file = new File(CURRENT_PATH+"\\"+"Checked.jpg");
+        File file = new File(CURRENT_PATH+"\\"+".gitignore");
         IFileService fileService = new FileService(file);
 
         String inputFileExtension = fileService.returnInputFileExtension();
@@ -33,8 +34,11 @@ public class Main {
         txtExtension.setNextChain(bmpExtension);
         bmpExtension.setNextChain(pdfExtension);
 
-        jpegExtension.checkTheExtension();
-
+        try {
+            jpegExtension.checkTheExtension();
+        } catch (ExtensionNotSupportedException extensionNotSupportedException) {
+            System.err.println(extensionNotSupportedException.getMessage());
+        }
 
 
     }

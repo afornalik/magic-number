@@ -1,6 +1,7 @@
 package afornalik.model.implementation;
 
 import afornalik.model.FileExtension;
+import afornalik.model.exception.ExtensionNotSupportedException;
 
 
 public class FileExtensionImpl extends FileExtension {
@@ -12,7 +13,7 @@ public class FileExtensionImpl extends FileExtension {
     }
 
     @Override
-    public void checkTheExtension() {
+    public void checkTheExtension() throws ExtensionNotSupportedException {
         StringBuilder firstStringFromFile = new StringBuilder();
         for (byte b : super.getFirstByteFromFile()) {
             firstStringFromFile.append((char) b);
@@ -26,7 +27,11 @@ public class FileExtensionImpl extends FileExtension {
             }
         } else {
             System.out.println("File type is not : "+ super.getFILE_EXTENSION());
-            this.nextChain.checkTheExtension();
+            if(this.nextChain != null){
+                this.nextChain.checkTheExtension();
+            }else {
+                throw new ExtensionNotSupportedException(" Extension not supported ");
+            }
         }
     }
 
