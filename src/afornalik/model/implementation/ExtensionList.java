@@ -1,4 +1,4 @@
-package afornalik.model.extension;
+package afornalik.model.implementation;
 
 public enum ExtensionList {
 

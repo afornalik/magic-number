@@ -2,7 +2,6 @@ package afornalik.service;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FileService implements IFileService{
@@ -19,11 +18,16 @@ public class FileService implements IFileService{
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             fileInputStream.read(firstByteFromFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return firstByteFromFile;
+    }
+
+    @Override
+    public String returnInputFileExtension() {
+        String inputFileExtension = file.getName();
+        int indexOfDot = inputFileExtension.lastIndexOf(".");
+        return inputFileExtension.substring(indexOfDot);
     }
 }

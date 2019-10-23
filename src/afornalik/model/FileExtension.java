@@ -1,8 +1,6 @@
 package afornalik.model;
 
-import afornalik.model.extension.ExtensionList;
-
-import java.io.File;
+import afornalik.model.implementation.ExtensionList;
 
 public abstract class FileExtension implements Checkable {
 
@@ -26,9 +24,5 @@ public abstract class FileExtension implements Checkable {
 
     public byte[] getFirstByteFromFile() {
         return firstByteFromFile;
-    }
-
-    public void setFirstByteFromFile(byte[] firstByteFromFile) {
-        this.firstByteFromFile = firstByteFromFile;
     }
 }

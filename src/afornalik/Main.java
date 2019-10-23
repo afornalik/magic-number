@@ -1,8 +1,8 @@
 package afornalik;
 
-import afornalik.model.extension.ExtensionList;
+import afornalik.model.implementation.ExtensionList;
 import afornalik.model.FileExtension;
-import afornalik.model.extension.FileExtensionImpl;
+import afornalik.model.implementation.FileExtensionImpl;
 import afornalik.service.FileService;
 import afornalik.service.IFileService;
 
@@ -16,8 +16,9 @@ public class Main {
     public static void main(String[] args) {
 
         File file = new File(CURRENT_PATH+"\\"+"Checked.bmp");
-
         IFileService fileService = new FileService(file);
+
+        String inputFileExtension = fileService.returnInputFileExtension();
 
         byte[] firstBytesFromFile = fileService.returnFirstByteFromFile();
 

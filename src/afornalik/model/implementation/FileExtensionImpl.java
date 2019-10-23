@@ -1,4 +1,4 @@
-package afornalik.model.extension;
+package afornalik.model.implementation;
 
 import afornalik.model.FileExtension;
 
@@ -18,11 +18,11 @@ public class FileExtensionImpl extends FileExtension {
             firstStringFromFile.append((char) b);
         }
         if (firstStringFromFile.toString().contains(super.getEXPECTED_EXTENSION())) {
-            System.out.println("true");
+            System.out.println("Extension is : "+ super.getFILE_EXTENSION());
         } else {
+            System.out.println("Extension is not : "+ super.getFILE_EXTENSION());
             this.nextChain.checkTheExtension();
         }
-        System.out.println(firstStringFromFile);
     }
 
     @Override
