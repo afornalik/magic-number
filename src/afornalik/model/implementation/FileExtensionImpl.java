@@ -14,25 +14,37 @@ public class FileExtensionImpl extends FileExtension {
 
     @Override
     public void checkTheExtension() throws ExtensionNotSupportedException {
+        String firstStringFromFile = firstStringFromFile();
+        boolean flag = false;
+        for(String extension : super.getEXPECTED_EXTENSION()) {
+            if (firstStringFromFile.contains(extension)) {
+                System.out.print("File type is : " + super.getFILE_EXTENSION());
+                if (getInputFileExtension().toUpperCase().equals(super.getFILE_EXTENSION())) {
+                    System.out.println(" and is correct");
+                } else {
+                    System.out.println(" Error ! Extension is ." + getInputFileExtension() + " , while actually it's a " + super.getFILE_EXTENSION());
+                }
+                break;
+            } else {
+                //System.out.println("File type is not : " + super.getFILE_EXTENSION());
+                if (this.nextChain == null) {
+                    throw new ExtensionNotSupportedException(" Extension not supported ");
+                }
+                flag =true;
+            }
+        }
+        if(flag){
+            this.nextChain.checkTheExtension();
+        }
+
+    }
+
+    private String firstStringFromFile() {
         StringBuilder firstStringFromFile = new StringBuilder();
         for (byte b : super.getFirstByteFromFile()) {
             firstStringFromFile.append((char) b);
         }
-        if (firstStringFromFile.toString().contains(super.getEXPECTED_EXTENSION())) {
-            System.out.print("File type is : "+ super.getFILE_EXTENSION());
-            if(getInputFileExtension().toUpperCase().equals(super.getFILE_EXTENSION())){
-                System.out.println(" and is correct");
-            }else {
-                System.out.println(" Error ! Extension is ."+getInputFileExtension()+" , while actually it's a "+super.getFILE_EXTENSION());
-            }
-        } else {
-            System.out.println("File type is not : "+ super.getFILE_EXTENSION());
-            if(this.nextChain != null){
-                this.nextChain.checkTheExtension();
-            }else {
-                throw new ExtensionNotSupportedException(" Extension not supported ");
-            }
-        }
+        return firstStringFromFile.toString();
     }
 
     @Override

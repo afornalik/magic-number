@@ -8,22 +8,29 @@ import afornalik.service.FileService;
 import afornalik.service.IFileService;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class Main {
 
 
     private final static String CURRENT_PATH = System.getProperty("user.dir");
 
+    private final static String SAMPLE_FILE = "task1.pdf"; //Insert file name here
+
+
     public static void main(String[] args) {
 
-        File file = new File(CURRENT_PATH+"\\"+".gitignore");
+        //to do -  checking for .txt extension is not working.
+        //I can not find ISO 8859-1 representation for this file.
+
+        File file = new File(CURRENT_PATH+"\\samples\\"+SAMPLE_FILE);
         IFileService fileService = new FileService(file);
 
         String inputFileExtension = fileService.returnInputFileExtension();
 
         byte[] firstBytesFromFile = fileService.returnFirstByteFromFile();
 
-        FileExtension jpegExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.JPEG);
+        FileExtension jpegExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.JPG);
         FileExtension gifExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.GIF);
         FileExtension txtExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.TXT);
         FileExtension bmpExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.BMP);
