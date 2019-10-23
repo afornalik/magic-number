@@ -3,7 +3,11 @@ package afornalik.model.extension;
 public enum ExtensionList {
 
     GIF("GIF89a"),
-    JPEG("JFIF");
+    JPEG("JFIF"),
+    TXT("ASCII"),
+    BMP("BM"),
+    PDF("PDF");
+
 
     private String signature;
 
