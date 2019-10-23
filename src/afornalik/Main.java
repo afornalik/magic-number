@@ -2,7 +2,7 @@ package afornalik;
 
 import afornalik.model.extension.ExtensionList;
 import afornalik.model.FileExtension;
-import afornalik.model.extension.GIFExtension;
+import afornalik.model.extension.FileExtensionImpl;
 
 import java.io.*;
 
@@ -15,8 +15,8 @@ public class Main {
 
         File file = new File(CURRENT_PATH+"\\"+"ss.jpg");
 
-        FileExtension jpeg = new GIFExtension(file, ExtensionList.JPEG);
-        FileExtension gif = new GIFExtension(file, ExtensionList.JPEG);
+        FileExtension jpeg = new FileExtensionImpl(file, ExtensionList.JPEG);
+        FileExtension gif = new FileExtensionImpl(file, ExtensionList.GIF);
 
         jpeg.checkTheExtension();
 
