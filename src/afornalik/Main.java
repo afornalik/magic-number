@@ -16,6 +16,7 @@ public class Main {
         File file = new File(CURRENT_PATH+"\\"+"ss.jpg");
 
         FileExtension jpeg = new GIFExtension(file, ExtensionList.JPEG);
+        FileExtension gif = new GIFExtension(file, ExtensionList.JPEG);
 
         jpeg.checkTheExtension();
 
