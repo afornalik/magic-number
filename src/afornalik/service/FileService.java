@@ -28,6 +28,6 @@ public class FileService implements IFileService{
     public String returnInputFileExtension() {
         String inputFileExtension = file.getName();
         int indexOfDot = inputFileExtension.lastIndexOf(".");
-        return inputFileExtension.substring(indexOfDot);
+        return inputFileExtension.substring(indexOfDot+1);
     }
 }

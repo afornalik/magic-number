@@ -15,18 +15,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        File file = new File(CURRENT_PATH+"\\"+"Checked.bmp");
+        File file = new File(CURRENT_PATH+"\\"+"Checked.jpg");
         IFileService fileService = new FileService(file);
 
         String inputFileExtension = fileService.returnInputFileExtension();
 
         byte[] firstBytesFromFile = fileService.returnFirstByteFromFile();
 
-        FileExtension jpegExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.JPEG);
-        FileExtension gifExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.GIF);
-        FileExtension txtExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.TXT);
-        FileExtension bmpExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.BMP);
-        FileExtension pdfExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.PDF);
+        FileExtension jpegExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.JPEG);
+        FileExtension gifExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.GIF);
+        FileExtension txtExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.TXT);
+        FileExtension bmpExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.BMP);
+        FileExtension pdfExtension = new FileExtensionImpl(firstBytesFromFile,inputFileExtension, ExtensionList.PDF);
 
         jpegExtension.setNextChain(gifExtension);
         gifExtension.setNextChain(txtExtension);

@@ -7,8 +7,8 @@ public class FileExtensionImpl extends FileExtension {
 
     private FileExtension nextChain;
 
-    public FileExtensionImpl(byte[] firstBytesFromFile, ExtensionList extensionList) {
-        super(firstBytesFromFile, extensionList);
+    public FileExtensionImpl(byte[] firstBytesFromFile , String inputFileExtension, ExtensionList extensionList) {
+        super(firstBytesFromFile,inputFileExtension, extensionList);
     }
 
     @Override
@@ -18,9 +18,14 @@ public class FileExtensionImpl extends FileExtension {
             firstStringFromFile.append((char) b);
         }
         if (firstStringFromFile.toString().contains(super.getEXPECTED_EXTENSION())) {
-            System.out.println("Extension is : "+ super.getFILE_EXTENSION());
+            System.out.print("File type is : "+ super.getFILE_EXTENSION());
+            if(getInputFileExtension().toUpperCase().equals(super.getFILE_EXTENSION())){
+                System.out.println(" and is correct");
+            }else {
+                System.out.println(" Error ! Extension is ."+getInputFileExtension()+" , while actually it's a "+super.getFILE_EXTENSION());
+            }
         } else {
-            System.out.println("Extension is not : "+ super.getFILE_EXTENSION());
+            System.out.println("File type is not : "+ super.getFILE_EXTENSION());
             this.nextChain.checkTheExtension();
         }
     }
