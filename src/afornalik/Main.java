@@ -3,6 +3,8 @@ package afornalik;
 import afornalik.model.extension.ExtensionList;
 import afornalik.model.FileExtension;
 import afornalik.model.extension.FileExtensionImpl;
+import afornalik.service.FileService;
+import afornalik.service.IFileService;
 
 import java.io.*;
 
@@ -13,59 +15,26 @@ public class Main {
 
     public static void main(String[] args) {
 
-        File file = new File(CURRENT_PATH+"\\"+"ss.jpg");
+        File file = new File(CURRENT_PATH+"\\"+"Checked.bmp");
 
-        FileExtension jpeg = new FileExtensionImpl(file, ExtensionList.JPEG);
-        FileExtension gif = new FileExtensionImpl(file, ExtensionList.GIF);
+        IFileService fileService = new FileService(file);
 
-        jpeg.checkTheExtension();
+        byte[] firstBytesFromFile = fileService.returnFirstByteFromFile();
 
+        FileExtension jpegExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.JPEG);
+        FileExtension gifExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.GIF);
+        FileExtension txtExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.TXT);
+        FileExtension bmpExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.BMP);
+        FileExtension pdfExtension = new FileExtensionImpl(firstBytesFromFile, ExtensionList.PDF);
 
+        jpegExtension.setNextChain(gifExtension);
+        gifExtension.setNextChain(txtExtension);
+        txtExtension.setNextChain(bmpExtension);
+        bmpExtension.setNextChain(pdfExtension);
 
-    /*    Scanner scanner = new Scanner(System.in);
-
-        System.out.println("You are actually located : ");
-        System.out.print(CURRENT_PATH+"\n\n");
-
-        System.out.println("Write file name :");
-        String filePath = scanner.next();
-
-        File file = new File(CURRENT_PATH+"\\"+"ss.gif");
-        File file2 = new File(CURRENT_PATH+"\\"+"giphy1.gif");
-        File file3 = new File(CURRENT_PATH+"\\"+"some.txt");
-        System.out.println(file.exists());
-
-        byte[] fileByteArray = new byte[(int)file.length()];
-
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(fileByteArray);
-            fileInputStream.close();
-
-            byte[] array = Files.readAllBytes(file.toPath());
-            byte[] array2 = Files.readAllBytes(file2.toPath());
-            byte[] array3 = Files.readAllBytes(file3.toPath());
-
-            for(int i = 0; i < 200 ; i++){
-                System.out.print((char)array[i]);
-            }
-            System.out.println();
-            for(int i = 0; i < 200 ; i++){
-                System.out.print((char)array2[i]);
-            }
+        jpegExtension.checkTheExtension();
 
 
-            System.out.println();
-            for(int i = 0; i < 200 ; i++){
-                System.out.print(array3[i]);
-            }
 
-            String test = "";
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }*/
     }
 }
