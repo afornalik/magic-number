@@ -9,19 +9,28 @@ import afornalik.service.FileService;
 import afornalik.service.IFileService;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class Main {
 
 
     private final static String CURRENT_PATH = System.getProperty("user.dir");
 
-    private final static String SAMPLE_FILE = "task1.pdf"; //Insert file name here
+    //private final static String SAMPLE_FILE = "task1.pdf"; //Insert file name here
 
 
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t Welcome. ");
+        System.out.println("\t Your actual path is :  " + CURRENT_PATH);
+        System.out.print("\t Enter file name to be checked : ");
+        System.out.println();
 
-        File file = new File(CURRENT_PATH + "\\samples\\" + SAMPLE_FILE);
+        String fileName = scanner.next();
+
+        File file = new File(CURRENT_PATH + fileName);
+
         IFileService fileService = new FileService(file);
 
         String inputFileExtension = fileService.returnInputFileExtension();
